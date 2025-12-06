@@ -70,7 +70,7 @@ import {
   getFilteredRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import type { UserWithRole } from "better-auth/plugins";
+import { User } from "better-auth";
 import { parse } from "csv-parse/sync";
 import {
   ChevronLeft,
@@ -97,14 +97,14 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-const columnHelper = createColumnHelper<UserWithRole>();
+const columnHelper = createColumnHelper<User & { role: string }>();
 
 export default function DataTable({
   data,
   rowCount,
   pageSize,
 }: {
-  data: UserWithRole[];
+  data: (User & { role: string })[];
   rowCount: number;
   pageSize: number;
 }) {
